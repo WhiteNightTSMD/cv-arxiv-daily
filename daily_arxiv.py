@@ -135,13 +135,13 @@ def get_daily_papers(topic,query="slam", max_results=2):
             #    if repo_url is None:
             #        repo_url = get_code_link(paper_key)
             if repo_url is not None:
-                content[paper_key] = "|**{}**|**{}**|{} et.al.|[{}]({})|**[link]({})**|**[abstract]({})**|\n".format(
+                content[paper_key] = "|**{}**|**{}**|{} et.al.|[{}]({})|**[link]({})**|**{}**|\n".format(
                        update_time,paper_title,paper_first_author,paper_key,paper_url,repo_url,paper_abstract)
                 content_to_web[paper_key] = "- {}, **{}**, {} et.al., Paper: [{}]({}), Code: **[{}]({})**,Abstarct:**{}**".format(
                        update_time,paper_title,paper_first_author,paper_url,paper_url,repo_url,repo_url,paper_abstract)
 
             else:
-                content[paper_key] = "|**{}**|**{}**|{} et.al.|[{}]({})|null|**[abstract]({})**|\n".format(
+                content[paper_key] = "|**{}**|**{}**|{} et.al.|[{}]({})|null|**{}**|\n".format(
                        update_time,paper_title,paper_first_author,paper_key,paper_url,paper_abstract)
                 content_to_web[paper_key] = "- {}, **{}**, {} et.al., Paper: [{}]({}),Abstarct:**{}**".format(
                        update_time,paper_title,paper_first_author,paper_url,paper_url,paper_abstract)
