@@ -7,7 +7,7 @@ import logging
 import argparse
 import datetime
 import requests
-#更新get_daily_papers中content内容和json_to_md中的输出格式，添加摘要内容
+#更新get_daily_papers中content内容和json_to_md中的输出格式和parse_arxiv_string，添加摘要内容
 logging.basicConfig(format='[%(asctime)s %(levelname)s] %(message)s',
                     datefmt='%m/%d/%Y %H:%M:%S',
                     level=logging.INFO)
@@ -171,8 +171,9 @@ def update_paper_links(filename):
         authors = parts[3].strip()
         arxiv_id = parts[4].strip()
         code = parts[5].strip()
+        abstract = parts[6].strip()
         arxiv_id = re.sub(r'v\d+', '', arxiv_id)
-        return date,title,authors,arxiv_id,code
+        return date,title,authors,arxiv_id,code,abstract
 
     with open(filename,"r") as f:
         content = f.read()
@@ -188,9 +189,9 @@ def update_paper_links(filename):
             for paper_id,contents in v.items():
                 contents = str(contents)
 
-                update_time, paper_title, paper_first_author, paper_url, code_url = parse_arxiv_string(contents)
+                update_time, paper_title, paper_first_author, paper_url, code_url,abstract = parse_arxiv_string(contents)
 
-                contents = "|{}|{}|{}|{}|{}|\n".format(update_time,paper_title,paper_first_author,paper_url,code_url)
+                contents = "|{}|{}|{}|{}|{}|{}|\n".format(update_time,paper_title,paper_first_author,paper_url,code_url,abstract)
                 json_data[keywords][paper_id] = str(contents)
                 logging.info(f'paper_id = {paper_id}, contents = {contents}')
 
