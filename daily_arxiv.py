@@ -7,7 +7,7 @@ import logging
 import argparse
 import datetime
 import requests
-#更新get_daily_papers中content内容和json_to_md中的输出格式和parse_arxiv_string，添加摘要内容,更改update_json_file中的判断content是否为空方式
+#更新get_daily_papers中content内容和json_to_md中的输出格式和parse_arxiv_string，update_paper_links中判断Content是否为空的部分，添加摘要内容
 logging.basicConfig(format='[%(asctime)s %(levelname)s] %(message)s',
                     datefmt='%m/%d/%Y %H:%M:%S',
                     level=logging.INFO)
@@ -177,10 +177,11 @@ def update_paper_links(filename):
 
     with open(filename,"r") as f:
         content = f.read()
-        if not content:
-            m = {}
-        else:
+        try:
             m = json.loads(content)
+        except:
+            m = {}
+            
 
         json_data = m.copy()
 
