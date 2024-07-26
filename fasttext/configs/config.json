@@ -1,0 +1,19 @@
+{
+    "embed_dim": 512,
+    "num_filters": 128,
+    "filter_sizes": [3, 4, 5],
+    "max_length": 1000,
+    "batch_size": 16,
+    "num_epochs": 100,
+    "learning_rate": 0.1,
+    "wordNgrams": 4,
+    "minCount": 1,
+    "verbose": 2,
+    "project_name": "fasttext",
+    "run_name": "elec",
+    "dataset_path": "/data6/lyb/title_abstract_elec_Classify/elec+notelec.jsonl",
+    "vocab_path": "/home/swh/text_classification/model_and_vocab_file/{run_name}_fasttext_vocab.pth",
+    "model_path": "/data6/lyb/title_abstract_elec_Classify/models/{run_name}_fasttext_model.pth",
+    "result_save_path": "/data6/lyb/title_abstract_elec_Classify/results/result.txt"
+}
+    
